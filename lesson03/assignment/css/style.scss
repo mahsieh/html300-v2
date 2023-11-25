@@ -4,3 +4,77 @@
 @import 'settings.responsive';
 @import 'components.content';
 
+// try using a mixin for something simple
+@mixin inline {
+    display: inline-block;
+}
+
+// css for each individual id card
+.id-card {
+    display: flex;
+    background-color: $white;
+    border: 40px solid lighten($black, 82%);
+    border-radius: 1%;
+    max-width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+
+
+    // nesting for the profile portion of the id card
+    .profile {
+        padding: 3% 2% 3% 2%;
+        margin: 2% 1% 2% 1%;
+        width: 30%;
+    
+        // for profile pic
+        .headshot {
+            border-radius: 50%;
+            padding: 3% 5% 3% 5%;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .name {
+            color: darken($gray, 60%);
+            padding: 1% 15% 1% 20%;
+            font-size: larger;
+            font-weight: bolder;
+            text-align: left;
+        }
+        
+        .job-title {
+            text-align: left;
+            font-style: italic;
+            font-weight: lighter;
+            padding: 1% 15% 1% 20%;
+            color: darken($gray, 20%);
+        }
+    }    
+    
+    // css for attributes on the right / non-name + job title
+    .personal-attributes {
+        width: 62%;
+        padding: 5% 2% 5% 2%;
+        margin: 5% 1% 5% 1%;
+        background-color: $gray;
+        .attribute-name {
+            @include inline;
+            font-weight: bold;
+            color: darken($gray, 50%);
+            padding-bottom: 3%;
+        }
+        .attribute-value {
+            @include inline;
+            color: darken($gray, 30%);
+        }
+        .logo {
+            @include inline;
+            vertical-align: middle;
+        }
+        .linkedin-link {
+            @include inline;
+            color: lighten($black, 20%);
+        }
+    }
+}
+
