@@ -1,6 +1,111 @@
 // Import partials here
 @import 'base.normalize';
 @import 'settings.variables';
-@import 'settings.responsive';
+@import 'settings.responsive'; //colors from reference design included here
 @import 'components.content';
 
+// set values for entire visible page
+body {
+    color: $white;
+    text-align: center;
+    font-weight: 700;
+}
+
+// use mixins to split up outer grid from inner flexbox
+@mixin grid-element {
+    display: grid;
+}
+@mixin flex-element {
+    display: flex;
+}
+
+// define header area for grid and assign color
+header {
+    grid-area: header;
+    @include grid-element;
+    background-color: $red;
+}
+// define navigational area for grid and assign color
+nav {
+    grid-area: nav;
+    @include grid-element;
+    background-color: $green;
+
+    // nest flexbox list underneath
+    ul {
+        @include flex-element;
+        margin: 0 auto;
+        width: 100%; // fill up entire block
+        list-style: none;
+
+        // flex list elements underneath
+        li {
+            flex: 1 1 auto; // grow and shrink automatically
+            display: inline-block;
+        }
+    }
+}
+
+// define sidebar area using an aside element and assign color
+aside {
+    grid-area: sidebar;
+    @include grid-element;
+    background-color: $purple;
+}
+
+// define main view area on page for grid and assign color
+main {
+    grid-area: main;
+    @include grid-element;
+    background-color: $orange;
+}
+
+// set footer color + grid area
+footer {
+    grid-area: footer;
+    @include grid-element;
+    background-color: $blue;
+}
+
+// define layout of the grid
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); // 10 columns
+    grid-template-rows: repeat(12, 2fr); // 12 rows
+    grid-template-areas: 
+    "header header header header header header header header header header"
+    "header header header header header header header header header header"
+    "nav nav nav nav nav nav nav nav nav nav"
+    "sidebar sidebar sidebar main main main main main main main"
+    "sidebar sidebar sidebar main main main main main main main"
+    "sidebar sidebar sidebar main main main main main main main"
+    "sidebar sidebar sidebar main main main main main main main"
+    "sidebar sidebar sidebar main main main main main main main"
+    "sidebar sidebar sidebar main main main main main main main"
+    "sidebar sidebar sidebar main main main main main main main"
+    "footer footer footer footer footer footer footer footer footer footer"
+    "footer footer footer footer footer footer footer footer footer footer";
+}
+
+// use media query to handle smaller screen sizes and adjust grid layout
+@media (max-width: 800px) {
+    body {
+        font-weight: 100;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "sidebar main main"
+        "sidebar main main"
+        "sidebar main main"
+        "sidebar main main"
+        "sidebar main main"
+        "sidebar main main"
+        "footer footer footer";
+    }
+}
