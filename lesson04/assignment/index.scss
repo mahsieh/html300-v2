@@ -1,0 +1,113 @@
+/* original code https://codepen.io/thecalicoder */
+
+@import 'variables.scss';
+
+@mixin hide {
+  overflow: hidden;
+}
+
+/*set general css for the visible page elements */
+body {
+  font-family: "Arial";
+  font-size: 10vmax;
+  line-height: 1;
+  color: $standard-color;
+  background-color: $near-white;
+  text-transform: uppercase;
+  @include hide;
+}
+
+/*navigation section css*/
+.navigation {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100vw;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  z-index: 1;
+
+  /*nested css for links (but really buttons) under navigation section */
+  a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem 6vmax;
+    font-size: 1rem;
+    border: 1px solid;
+    border-radius: 2rem;
+    margin: 1rem auto;
+  }
+
+  /*style buttons that are being hovered over differently*/
+  a:hover {
+    background-color: $hover-purple;
+    color: $near-white;
+  }
+}
+
+#page {
+  min-width: 100vw;
+  min-height: 100vh;
+  @include hide;
+
+}
+
+.container {
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* css for animation that will indicate page is loading/switching*/
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background-color: $standard-color;
+  transform: translatex(0%);
+  /* modified existing css to extend animation, and give a bounce back effect, rather than a single wipe*/
+  transition: transform 1.5s cubic-bezier(0, -2.5, 1.0, -.1) 1.5s;
+  will-change: transform;
+}
+
+/* css for the disappearance ofsection/page titles */
+.a,
+.b,
+.c {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition-property: opacity, visibility;
+  transition-duration: 2.5s; // extended to disappear during the secondary wipe
+  transition-delay: 1.2s;
+  transition-timing-function: ease-in-out;
+  height: 100%;
+}
+
+.ac {
+  margin: auto;
+}
+
+/*css for the appearance of section/page titles */
+[data-route=c] .c,
+[data-route=b] .b,
+[data-route=a] .a {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition: opacity 1.7s ease-out 1.7s; //extended duration to appear on both left and right wipes
+  transition-delay: 4.2s; //increase delay to better match the new wipe animation
+}
+
+//removes standard cursor changes when hovering
+.disable-hover,
+.disable-hover * {
+  pointer-events: none !important;
+  cursor: none;
+  cursor: wait;
+}
