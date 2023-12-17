@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <!--include navigation bar on all 4 pages, which display which is active; at smaller screen sizes, the bar will be toggleable-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Travel Buddy</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,26 +20,32 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> <!--help screen readers with the current active page-->
-            </li>
             <li class="nav-item">
-              <a class="nav-link" href="/images.html">Images</a>
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Images <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/accordion.html">Accordion</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/grid.html">Grid </a>
+                <a class="nav-link" href="accordion.html">Grid</a>
               </li>
           </ul>
         </div>
       </nav>
     <main class="main">
-        <h1>Welcome to Travel Buddy!</h1>
-        <p class="text-information">Travel Buddy is a website designed for travelers (like you!) that actually want to learn about the places that they're going to. Additionally, we'll help you figure out whether your planned travel dates are a good fit for the vacation you have in mind, or if the local climate is going to cause some problems. Additionally, if there's any urgent news pertaining the area, we'll also include that so you're really in the know.</p>
+        <h1>Some vacation images:</h1>
+        <p>Vacations are fun!</p>
+        <!--use img-fluid to create responsive images
+        also add tooltips to the images-->
+        <img src="/images/travel.jpg" class="img-fluid" alt="" data-toggle="tooltip" data-placement="bottom" title="Tooltipped image depicting air travel to various locations">
+        <p>Urban travel can be inspiring</p>
+        <img src="/images/urban_vacation.jpg" class="img-fluid" alt="" data-toggle="tooltip" data-placement="bottom" title="Tooltipped image of Paris near Eiffel Tower">
+        <p>Tropical locations are great for relaxation</p>
+        <img src="/images/tropical_vacation.jpg" class="img-fluid" alt="" data-toggle="tooltip" data-placement="bottom" title="Tooltipped image of a tropical island with pier">
 
-        <div class="text-info">Google Map may go here</div>
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
